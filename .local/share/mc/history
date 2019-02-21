@@ -1,0 +1,17 @@
+[cmdline]
+0=св
+1=cd
+2=10
+3=
+
+[Dir Hist New Right Panel]
+0=/home/user/shell
+
+[Dir Hist New Left Panel]
+0=/home/user/shell
+1=/home
+2=/sys/devices/system
+3=/sys/devices
+4=/sys
+5=/
+6=/home/user

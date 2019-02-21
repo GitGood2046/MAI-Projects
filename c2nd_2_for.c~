@@ -1,0 +1,9 @@
+#include <stdio.h>
+int main(void) {
+  int i; //Счетчик цикла
+  for(i = 1; i <= 10; i++)
+  {
+    printf("Katermin Vsevolod");
+  }
+  return 0;
+}

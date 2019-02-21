@@ -1,0 +1,580 @@
+user@PSB133S01ZFH:~/2sem$ ls
+lao  tzu
+user@PSB133S01ZFH:~/2sem$ cat lao
+
+
+          The Way that can be told of is not the eternal Way;   
+          The name that can be named is not the eternal name.   
+          The Nameless is the origin of Heaven and Earth;   
+          The Named is the mother of all things.   
+          Therefore let there always be non-being,   
+            so we may see their subtlety,   
+          And let there always be being,   
+            so we may see their outcome.   
+          The two are the same,   
+          But after they are produced,   
+            they have different names.   
+
+
+user@PSB133S01ZFH:~/2sem$ cat tzu
+      The Nameless is the origin of Heaven and Earth;   
+      The named is the mother of all things.   
+   
+      Therefore let there always be non-being,   
+        so we may see their subtlety,   
+      And let there always be being,   
+        so we may see their outcome.   
+      The two are the same,   
+      But after they are produced,   
+        they have different names.   
+      They both may be called deep and profound.   
+      Deeper and more profound,   
+      The door of all subtleties!   
+
+user@PSB133S01ZFH:~/2sem$ cmp -b lao tzu
+lao tzu differ: byte 1, line 1 is  12 ^J  40 
+ user@PSB133S01ZFH:~/2sem$ cmp -i 102:102 lao tzu
+lao tzu differ: byte 1, line 1
+user@PSB133S01ZFH:~/2sem$ cmp -l lao tzu
+  1  12  40
+  2  12  40
+  7  40 124
+  8  40 150
+  9  40 145
+ 11  40 116
+ 12  40 141
+ 13 124 155
+ 14 150 145
+ 15 145 154
+ 16  40 145
+ 17 127 163
+ 18 141 163
+ 19 171  40
+ 20  40 151
+…
+user@PSB133S01ZFH:~/2sem$ cmp -n 28 lao tzu
+lao tzu differ: byte 1, line 1
+user@PSB133S01ZFH:~/2sem$ pv lao | cmp -l tzu > output.txt
+ 553 B 0:00:00 [3,71MiB/s] [====================================================================================>] 100%            
+cmp: EOF on tzu after byte 512
+user@PSB133S01ZFH:~/2sem$ ls
+lao  output.txt  tzu
+user@PSB133S01ZFH:~/2sem$ comm lao tzu
+
+
+	      The Nameless is the origin of Heaven and Earth;   
+comm: file 2 is not in sorted order
+	      The named is the mother of all things.   
+	   
+	      Therefore let there always be non-being,   
+	        so we may see their subtlety,   
+	      And let there always be being,   
+	        so we may see their outcome.   
+	      The two are the same,   
+	      But after they are produced,   
+          The Way that can be told of is not the eternal Way;   
+comm: file 1 is not in sorted order
+          The name that can be named is not the eternal name.   
+          The Nameless is the origin of Heaven and Earth;   
+          The Named is the mother of all things.   
+          Therefore let there always be non-being,   
+            so we may see their subtlety,   
+          And let there always be being,   
+            so we may see their outcome.   
+          The two are the same,   
+          But after they are produced,   
+            they have different names.   
+
+
+	        they have different names.   
+	      They both may be called deep and profound.   
+	      Deeper and more profound,   
+	      The door of all subtleties!   
+	
+user@PSB133S01ZFH:~/2sem$ comm -1 lao tzu
+      The Nameless is the origin of Heaven and Earth;   
+comm: file 2 is not in sorted order
+      The named is the mother of all things.   
+   
+      Therefore let there always be non-being,   
+        so we may see their subtlety,   
+      And let there always be being,   
+        so we may see their outcome.   
+      The two are the same,   
+      But after they are produced,   
+comm: file 1 is not in sorted order
+        they have different names.   
+      They both may be called deep and profound.   
+      Deeper and more profound,   
+      The door of all subtleties!   
+user@PSB133S01ZFH:~/2sem$ wc lao tzu
+  15   78  553 lao
+  14   72  512 tzu
+  29  150 1065 total
+user@PSB133S01ZFH:~/2sem$ dd if=lao of=mao conv=ucase
+1+1 records in
+1+1 records out
+553 bytes copied, 0,000147663 s, 3,7 MB/s
+user@PSB133S01ZFH:~/2sem$ cat mao
+
+
+          THE WAY THAT CAN BE TOLD OF IS NOT THE ETERNAL WAY;   
+          THE NAME THAT CAN BE NAMED IS NOT THE ETERNAL NAME.   
+          THE NAMELESS IS THE ORIGIN OF HEAVEN AND EARTH;   
+          THE NAMED IS THE MOTHER OF ALL THINGS.   
+          THEREFORE LET THERE ALWAYS BE NON-BEING,   
+            SO WE MAY SEE THEIR SUBTLETY,   
+          AND LET THERE ALWAYS BE BEING,   
+            SO WE MAY SEE THEIR OUTCOME.   
+          THE TWO ARE THE SAME,   
+          BUT AFTER THEY ARE PRODUCED,   
+            THEY HAVE DIFFERENT NAMES.   
+
+
+user@PSB133S01ZFH:~/2sem$ rm mao
+user@PSB133S01ZFH:~/2sem$ dd if=lao of=mao bs=8 count=5
+5+0 records in
+5+0 records out
+40 bytes copied, 0,000143886 s, 278 kB/s
+user@PSB133S01ZFH:~/2sem$ cat mao
+
+
+          The Way that can be told of user@PSB133S01ZFH:~/2sem$ rm mao
+user@PSB133S01ZFH:~/2sem$ dd if=lao of=mao seek=1 skip=1
+0+1 records in
+0+1 records out
+41 bytes copied, 9,0033e-05 s, 455 kB/s
+user@PSB133S01ZFH:~/2sem$ cat mao
+         they have different names.   
+
+
+user@PSB133S01ZFH:~/2sem$ rm mao
+user@PSB133S01ZFH:~/2sem$ diff lao tzu
+1,14c1,13
+< 
+< 
+<           The Way that can be told of is not the eternal Way;   
+<           The name that can be named is not the eternal name.   
+<           The Nameless is the origin of Heaven and Earth;   
+<           The Named is the mother of all things.   
+<           Therefore let there always be non-being,   
+<             so we may see their subtlety,   
+<           And let there always be being,   
+<             so we may see their outcome.   
+<           The two are the same,   
+<           But after they are produced,   
+<             they have different names.   
+< 
+---
+>       The Nameless is the origin of Heaven and Earth;   
+>       The named is the mother of all things.   
+>    
+>       Therefore let there always be non-being,   
+>         so we may see their subtlety,   
+>       And let there always be being,   
+>         so we may see their outcome.   
+>       The two are the same,   
+>       But after they are produced,   
+>         they have different names.   
+>       They both may be called deep and profound.   
+>       Deeper and more profound,   
+>       The door of all subtleties!   
+user@PSB133S01ZFH:~/2sem$ dd if=lao of=lao1
+1+1 records in
+1+1 records out
+553 bytes copied, 0,000137962 s, 4,0 MB/s
+user@PSB133S01ZFH:~/2sem$ diff -s lao lao1
+Files lao and lao1 are identical
+user@PSB133S01ZFH:~/2sem$ rm lao1
+user@PSB133S01ZFH:~/2sem$ diff -c lao tzu
+*** lao	2019-02-14 15:34:10.461396746 +0300
+--- tzu	2019-02-14 15:34:28.901510528 +0300
+***************
+*** 1,15 ****
+! 
+! 
+!           The Way that can be told of is not the eternal Way;   
+!           The name that can be named is not the eternal name.   
+!           The Nameless is the origin of Heaven and Earth;   
+!           The Named is the mother of all things.   
+!           Therefore let there always be non-being,   
+!             so we may see their subtlety,   
+!           And let there always be being,   
+!             so we may see their outcome.   
+!           The two are the same,   
+!           But after they are produced,   
+!             they have different names.   
+! 
+  
+--- 1,14 ----
+!       The Nameless is the origin of Heaven and Earth;   
+!       The named is the mother of all things.   
+!    
+!       Therefore let there always be non-being,   
+!         so we may see their subtlety,   
+!       And let there always be being,   
+!         so we may see their outcome.   
+!       The two are the same,   
+!       But after they are produced,   
+!         they have different names.   
+!       They both may be called deep and profound.   
+!       Deeper and more profound,   
+!       The door of all subtleties!   
+  
+user@PSB133S01ZFH:~/2sem$ diff -e lao tzu
+1,14c
+      The Nameless is the origin of Heaven and Earth;   
+      The named is the mother of all things.   
+   
+      Therefore let there always be non-being,   
+        so we may see their subtlety,   
+      And let there always be being,   
+        so we may see their outcome.   
+      The two are the same,   
+      But after they are produced,   
+        they have different names.   
+      They both may be called deep and profound.   
+      Deeper and more profound,   
+      The door of all subtleties!   
+.
+user@PSB133S01ZFH:~/2sem$ diff -u lao tzu
+--- lao	2019-02-14 15:34:10.461396746 +0300
++++ tzu	2019-02-14 15:34:28.901510528 +0300
+@@ -1,15 +1,14 @@
+-
+-
+-          The Way that can be told of is not the eternal Way;   
+-          The name that can be named is not the eternal name.   
+-          The Nameless is the origin of Heaven and Earth;   
+-          The Named is the mother of all things.   
+-          Therefore let there always be non-being,   
+-            so we may see their subtlety,   
+-          And let there always be being,   
+-            so we may see their outcome.   
+-          The two are the same,   
+-          But after they are produced,   
+-            they have different names.   
+-
++      The Nameless is the origin of Heaven and Earth;   
++      The named is the mother of all things.   
++   
++      Therefore let there always be non-being,   
++        so we may see their subtlety,   
++      And let there always be being,   
++        so we may see their outcome.   
++      The two are the same,   
++      But after they are produced,   
++        they have different names.   
++      They both may be called deep and profound.   
++      Deeper and more profound,   
++      The door of all subtleties!   
+ 
+user@PSB133S01ZFH:~/2sem$ diff --suppress-common-lines -y lao tzu
+							      |	      The Nameless is the origin of Heaven and Earth;   
+							      |	      The named is the mother of all things.   
+          The Way that can be told of is not the eternal Way; |	   
+          The name that can be named is not the eternal name. |	      Therefore let there always be non-being,   
+          The Nameless is the origin of Heaven and Earth;     |	        so we may see their subtlety,   
+          The Named is the mother of all things.   	      |	      And let there always be being,   
+          Therefore let there always be non-being,   	      |	        so we may see their outcome.   
+            so we may see their subtlety,   		      |	      The two are the same,   
+          And let there always be being,   		      |	      But after they are produced,   
+            so we may see their outcome.   		      |	        they have different names.   
+          The two are the same,   			      |	      They both may be called deep and profound.   
+          But after they are produced,   		      |	      Deeper and more profound,   
+            they have different names.   		      |	      The door of all subtleties!   
+							      <
+user@PSB133S01ZFH:~/2sem$ grep -i -o -bn THAT lao
+3:20:that
+4:86:that
+user@PSB133S01ZFH:~/2sem$ grep that lao
+          The Way that can be told of is not the eternal Way;   
+          The name that can be named is not the eternal name.   
+user@PSB133S01ZFH:~/2sem$ grep -v -c that lao
+13
+user@PSB133S01ZFH:~/2sem$ grep "that" ~/2sem/*
+/home/fallfire/2sem/lao:          The Way that can be told of is not the eternal Way;   
+/home/fallfire/2sem/lao:          The name that can be named is not the eternal name.   
+user@PSB133S01ZFH:~/2sem$ join -a 1 -e _ lao tzu
+_
+_
+join: tzu:3: is not sorted:    
+The Way that can be told of is not the eternal Way; _ Nameless is the origin of Heaven and Earth; _
+The Way that can be told of is not the eternal Way; _ named is the mother of all things. _
+The name that can be named is not the eternal name. _ Nameless is the origin of Heaven and Earth; _
+The name that can be named is not the eternal name. _ named is the mother of all things. _
+The Nameless is the origin of Heaven and Earth; _ Nameless is the origin of Heaven and Earth; _
+The Nameless is the origin of Heaven and Earth; _ named is the mother of all things. _
+The Named is the mother of all things. _ Nameless is the origin of Heaven and Earth; _
+The Named is the mother of all things. _ named is the mother of all things. _
+join: lao:8: is not sorted:             so we may see their subtlety,   
+Therefore let there always be non-being, _ let there always be non-being, _
+so we may see their subtlety, _ we may see their subtlety, _
+And let there always be being, _ let there always be being, _
+so we may see their outcome. _ we may see their outcome. _
+The two are the same, _ two are the same, _
+But after they are produced, _ after they are produced, _
+they have different names. _ have different names. _
+_
+_
+user@PSB133S01ZFH:~/2sem$ join -j1 3 lao tzu
+join: lao:5: is not sorted:           The Nameless is the origin of Heaven and Earth;   
+join: tzu:3: is not sorted:    
+they But after are produced,  have different names. 
+user@PSB133S01ZFH:~/2sem$ join -o 1.2 lao tzu
+join: tzu:3: is not sorted:    
+Way
+Way
+name
+name
+Nameless
+Nameless
+Named
+Named
+join: lao:8: is not sorted:             so we may see their subtlety,   
+let
+we
+let
+we
+two
+after
+have
+user@PSB133S01ZFH:~/2sem$ join -v 2 lao tzu
+join: tzu:3: is not sorted:    
+
+join: lao:8: is not sorted:             so we may see their subtlety,   
+They both may be called deep and profound. 
+Deeper and more profound, 
+The door of all subtleties! 
+user@PSB133S01ZFH:~/2sem$ sort -o mao lao
+user@PSB133S01ZFH:~/2sem$ cat mao
+
+
+
+
+          And let there always be being,   
+          But after they are produced,   
+            so we may see their outcome.   
+            so we may see their subtlety,   
+          The Named is the mother of all things.   
+          The Nameless is the origin of Heaven and Earth;   
+          The name that can be named is not the eternal name.   
+          Therefore let there always be non-being,   
+          The two are the same,   
+          The Way that can be told of is not the eternal Way;   
+            they have different names.   
+user@PSB133S01ZFH:~/2sem$ rm mao
+
+user@PSB133S01ZFH:~/2sem$ sort -r lao
+            they have different names.   
+          The Way that can be told of is not the eternal Way;   
+          The two are the same,   
+          Therefore let there always be non-being,   
+          The name that can be named is not the eternal name.   
+          The Nameless is the origin of Heaven and Earth;   
+          The Named is the mother of all things.   
+            so we may see their subtlety,   
+            so we may see their outcome.   
+          But after they are produced,   
+          And let there always be being,   
+
+
+
+
+user@PSB133S01ZFH:~/2sem$ tail lao
+          Therefore let there always be non-being,   
+            so we may see their subtlety,   
+          And let there always be being,   
+            so we may see their outcome.   
+          The two are the same,   
+          But after they are produced,   
+            they have different names.   
+
+user@PSB133S01ZFH:~/2sem$ tail -c 55 lao
+duced,   
+            they have different names.   
+
+
+user@PSB133S01ZFH:~/2sem$ tail -n 5 lao
+          But after they are produced,   
+            they have different names.   
+
+
+user@PSB133S01ZFH:~/2sem$ tee -a lao
+привет юзер!
+я тебя вижу)))
+^C
+user@PSB133S01ZFH:~/2sem$ cat lao
+
+
+          The Way that can be told of is not the eternal Way;   
+          The name that can be named is not the eternal name.   
+          The Nameless is the origin of Heaven and Earth;   
+          The Named is the mother of all things.   
+          Therefore let there always be non-being,   
+            so we may see their subtlety,   
+          And let there always be being,   
+            so we may see their outcome.   
+          The two are the same,   
+          But after they are produced,   
+            they have different names.   
+
+
+привет юзер!
+я тебя вижу)))
+user@PSB133S01ZFH:~/2sem$ nano lao
+user@PSB133S01ZFH:~/2sem$ head lao | tr [A-z] '*'
+
+
+          *** *** **** *** ** **** ** ** *** *** ******* ***;   
+          *** **** **** *** ** ***** ** *** *** ******* ****.   
+          *** ******** ** *** ****** ** ****** *** *****;   
+          *** ***** ** *** ****** ** *** ******.   
+          ********* *** ***** ****** ** ***-*****,   
+            ** ** *** *** ***** ********,   
+          *** *** ***** ****** ** *****,   
+            ** ** *** *** ***** *******.   
+user@PSB133S01ZFH:~/2sem$ uniq -c lao
+      2 
+      1           The Way that can be told of is not the eternal Way;   
+      1           The name that can be named is not the eternal name.   
+      1           The Nameless is the origin of Heaven and Earth;   
+      1           The Named is the mother of all things.   
+      1           Therefore let there always be non-being,   
+      1             so we may see their subtlety,   
+      1           And let there always be being,   
+      1             so we may see their outcome.   
+      1           The two are the same,   
+      1           But after they are produced,   
+      1             they have different names.   
+      2 
+user@PSB133S01ZFH:~/2sem$ od lao
+0000000 005012 020040 020040 020040 020040 020040 064124 020145
+0000020 060527 020171 064164 072141 061440 067141 061040 020145
+0000040 067564 062154 067440 020146 071551 067040 072157 072040
+0000060 062550 062440 062564 067162 066141 053440 074541 020073
+0000100 020040 020012 020040 020040 020040 020040 052040 062550
+0000120 067040 066541 020145 064164 072141 061440 067141 061040
+0000140 020145 060556 062555 020144 071551 067040 072157 072040
+0000160 062550 062440 062564 067162 066141 067040 066541 027145
+0000200 020040 005040 020040 020040 020040 020040 020040 064124
+0000220 020145 060516 062555 062554 071563 064440 020163 064164
+0000240 020145 071157 063551 067151 067440 020146 062510 073141
+0000260 067145 060440 062156 042440 071141 064164 020073 020040
+0000300 020012 020040 020040 020040 020040 052040 062550 047040
+0000320 066541 062145 064440 020163 064164 020145 067555 064164
+0000340 071145 067440 020146 066141 020154 064164 067151 071547
+0000360 020056 020040 020012 020040 020040 020040 020040 052040
+0000400 062550 062562 067546 062562 066040 072145 072040 062550
+0000420 062562 060440 073554 074541 020163 062542 067040 067157
+0000440 061055 064545 063556 020054 020040 020012 020040 020040
+0000460 020040 020040 020040 071440 020157 062567 066440 074541
+0000500 071440 062545 072040 062550 071151 071440 061165 066164
+0000520 072145 026171 020040 005040 020040 020040 020040 020040
+0000540 020040 067101 020144 062554 020164 064164 071145 020145
+0000560 066141 060567 071571 061040 020145 062542 067151 026147
+0000600 020040 005040 020040 020040 020040 020040 020040 020040
+0000620 067563 073440 020145 060555 020171 062563 020145 064164
+0000640 064545 020162 072557 061564 066557 027145 020040 005040
+0000660 020040 020040 020040 020040 020040 064124 020145 073564
+0000700 020157 071141 020145 064164 020145 060563 062555 020054
+0000720 020040 020012 020040 020040 020040 020040 041040 072165
+0000740 060440 072146 071145 072040 062550 020171 071141 020145
+0000760 071160 062157 061565 062145 020054 020040 020012 020040
+0001000 020040 020040 020040 020040 072040 062550 020171 060550
+0001020 062566 062040 063151 062546 062562 072156 067040 066541
+0001040 071545 020056 020040 005012 000012
+0001051
+user@PSB133S01ZFH:~/2sem$ od -A x lao
+000000 005012 020040 020040 020040 020040 020040 064124 020145
+000010 060527 020171 064164 072141 061440 067141 061040 020145
+000020 067564 062154 067440 020146 071551 067040 072157 072040
+000030 062550 062440 062564 067162 066141 053440 074541 020073
+000040 020040 020012 020040 020040 020040 020040 052040 062550
+000050 067040 066541 020145 064164 072141 061440 067141 061040
+000060 020145 060556 062555 020144 071551 067040 072157 072040
+000070 062550 062440 062564 067162 066141 067040 066541 027145
+000080 020040 005040 020040 020040 020040 020040 020040 064124
+000090 020145 060516 062555 062554 071563 064440 020163 064164
+0000a0 020145 071157 063551 067151 067440 020146 062510 073141
+0000b0 067145 060440 062156 042440 071141 064164 020073 020040
+0000c0 020012 020040 020040 020040 020040 052040 062550 047040
+0000d0 066541 062145 064440 020163 064164 020145 067555 064164
+0000e0 071145 067440 020146 066141 020154 064164 067151 071547
+0000f0 020056 020040 020012 020040 020040 020040 020040 052040
+000100 062550 062562 067546 062562 066040 072145 072040 062550
+000110 062562 060440 073554 074541 020163 062542 067040 067157
+000120 061055 064545 063556 020054 020040 020012 020040 020040
+000130 020040 020040 020040 071440 020157 062567 066440 074541
+000140 071440 062545 072040 062550 071151 071440 061165 066164
+000150 072145 026171 020040 005040 020040 020040 020040 020040
+000160 020040 067101 020144 062554 020164 064164 071145 020145
+000170 066141 060567 071571 061040 020145 062542 067151 026147
+000180 020040 005040 020040 020040 020040 020040 020040 020040
+000190 067563 073440 020145 060555 020171 062563 020145 064164
+0001a0 064545 020162 072557 061564 066557 027145 020040 005040
+0001b0 020040 020040 020040 020040 020040 064124 020145 073564
+0001c0 020157 071141 020145 064164 020145 060563 062555 020054
+0001d0 020040 020012 020040 020040 020040 020040 041040 072165
+0001e0 060440 072146 071145 072040 062550 020171 071141 020145
+0001f0 071160 062157 061565 062145 020054 020040 020012 020040
+000200 020040 020040 020040 020040 072040 062550 020171 060550
+000210 062566 062040 063151 062546 062562 072156 067040 066541
+000220 071545 020056 020040 005012 000012
+000229
+user@PSB133S01ZFH:~/2sem$ od -t a -j b lao
+0001000  sp  sp  sp  sp  sp  sp  sp  sp  sp   t   h   e   y  sp   h   a
+0001020   v   e  sp   d   i   f   f   e   r   e   n   t  sp   n   a   m
+0001040   e   s   .  sp  sp  sp  nl  nl  nl
+0001051
+user@PSB133S01ZFH:~/2sem$ sum lao
+15449     1
+user@PSB133S01ZFH:~/2sem$ sum -s lao
+40406 2 lao
+user@PSB133S01ZFH:~/2sem$ cut -b 23,24,25 lao
+
+
+ ca
+t c
+ is
+ th
+t t
+see
+e a
+see
+the
+ey 
+dif
+
+user@PSB133S01ZFH:~/2sem$ cut -c 33- lao
+
+
+ld of is not the eternal Way;   
+amed is not the eternal name.   
+igin of Heaven and Earth;   
+r of all things.   
+ways be non-being,   
+subtlety,   
+e being,   
+outcome.   
+  
+duced,   
+names.   
+
+user@PSB133S01ZFH:~/2sem$ cut -d a -f -2 lao
+
+
+          The Way th
+          The name th
+          The Nameless is the origin of He
+          The Named is the mother of 
+          Therefore let there alw
+            so we may see their subtlety,   
+          And let there alw
+            so we may see their outcome.   
+          The two are the s
+          But after they 
+            they have different n
+
+
+

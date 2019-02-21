@@ -1,0 +1,11 @@
+#include <stdio.h>
+int main(void){
+  float PI=3.14159;
+  float *p1;
+  double *p2;
+  p1=&PI;
+  p2= (double *) p1;
+  printf("By adress p1=%p are stored *p1=%g\n", p1, *p1);
+  printf("By adress p2=%p are stored *p1=%e\n", p2, *p2);
+  //getch();
+}
